@@ -3,6 +3,7 @@ package com.sabre.renderEngine;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
+import org.lwjgl.stb.STBImage;
+import org.lwjgl.system.MemoryStack;
 
 import com.sabre.models.RawModel;
 
@@ -35,19 +36,42 @@ public class Loader {
 	}
 	
 	public int loadTexture(String fileName) {
-		Texture texture = null;
-		try {
-			texture = TextureLoader.getTexture("PNG", new FileInputStream(fileName));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		int textureID = texture.getTextureID();
-		textures.add(textureID);
-		return textureID;
+	    int width, height;
+	    ByteBuffer imageBuffer;
+
+	    try (MemoryStack stack = MemoryStack.stackPush()) {
+	        IntBuffer w = stack.mallocInt(1);
+	        IntBuffer h = stack.mallocInt(1);
+	        IntBuffer channels = stack.mallocInt(1);
+
+	        STBImage.stbi_set_flip_vertically_on_load(true);
+
+	        imageBuffer = STBImage.stbi_load(fileName, w, h, channels, 4);
+	        if (imageBuffer == null) {
+	            throw new RuntimeException("Failed to load texture file " + fileName + " : " + STBImage.stbi_failure_reason());
+	        }
+
+	        width = w.get(0);
+	        height = h.get(0);
+	    }
+
+	    int textureID = GL11.glGenTextures();
+	    GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
+
+	    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0,
+	            GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, imageBuffer);
+
+	    GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
+
+	    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
+	    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
+	    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+	    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+
+	    STBImage.stbi_image_free(imageBuffer);
+
+	    textures.add(textureID);
+	    return textureID;
 	}
 	
 	public void cleanUp() {
@@ -77,6 +101,7 @@ public class Loader {
 		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
 		GL20.glVertexAttribPointer(attributeNumber, coordinateSize, GL11.GL_FLOAT, false, 0, 0);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+	    vbos.add(vboID);
 	}
 	
 	private void unbindVAO() {

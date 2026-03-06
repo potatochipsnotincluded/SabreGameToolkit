@@ -1,6 +1,7 @@
 package com.sabre.shaders;
 
-import org.lwjgl.util.vector.Matrix4f;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import com.sabre.entities.Camera;
 import com.sabre.entities.Light;
@@ -16,8 +17,8 @@ public class StaticShader extends ShaderProgramme {
 	private int location_viewMatrix;
 	private int location_lightPosition;
 	private int location_lightColour;
-	private int location_shineDamper;
-	private int location_reflectivity;
+	private int location_metallic;
+	private int location_smoothness;
 	private int location_ambient;
 	
 	public StaticShader() {
@@ -38,14 +39,14 @@ public class StaticShader extends ShaderProgramme {
 		location_viewMatrix = super.getUniformLocation("viewMatrix");
 		location_lightPosition = super.getUniformLocation("lightPosition");
 		location_lightColour = super.getUniformLocation("lightColour");
-		location_shineDamper = super.getUniformLocation("shineDamper");
-		location_reflectivity = super.getUniformLocation("reflectivity");
+		location_metallic = super.getUniformLocation("metallic");
+		location_smoothness = super.getUniformLocation("smoothness");
 		location_ambient = super.getUniformLocation("ambient");
 	}
 	
-	public void loadShineVariables(float damper, float reflectivity) {
-		super.loadFloat(location_shineDamper, damper);
-		super.loadFloat(location_reflectivity, reflectivity);
+	public void loadMaterialVariables(float metallic, float smoothness) {
+		super.loadFloat(location_metallic, metallic);
+		super.loadFloat(location_smoothness, smoothness);
 	}
 	
 	public void loadTransformationMatrix(Matrix4f matrix) {

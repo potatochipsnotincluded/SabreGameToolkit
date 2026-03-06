@@ -4,8 +4,8 @@ public class ModelTexture {
 	
 	private int textureID;
 	
-	private float shineDamper = 1;
-	private float reflectivity = 0;
+	private float metallic = 1;
+	private float smoothness = 0;
 	
 	public ModelTexture(int id) {
 		this.textureID = id;
@@ -15,20 +15,20 @@ public class ModelTexture {
 		return this.textureID;
 	}
 
-	public float getShineDamper() {
-		return shineDamper;
+	public float getMetallic() {
+		return metallic;
 	}
 
-	public void setShineDamper(float shineDamper) {
-		this.shineDamper = shineDamper;
+	public void setMetallic(float metallic) {
+		this.metallic = metallic;
 	}
 
-	public float getReflectivity() {
-		return reflectivity;
+	public float getSmoothness() {
+		return smoothness;
 	}
 
-	public void setReflectivity(float reflectivity) {
-		this.reflectivity = reflectivity;
+	public void setSmoothness(float smoothness) {
+		this.smoothness = smoothness;
 	}
 	
 }

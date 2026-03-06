@@ -1,6 +1,6 @@
 package com.sabre.entities;
 
-import org.lwjgl.util.vector.Vector3f;
+import org.joml.Vector3f;
 
 import com.sabre.models.TexturedModel;
 
@@ -17,7 +17,7 @@ public class Entity {
 		this.rotation = rotation;
 		this.scale = scale;
 	}
-
+	
 	public TexturedModel getModel() {
 		return model;
 	}

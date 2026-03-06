@@ -6,21 +6,41 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="jars/asm-debug-all.jar"/>
-	<classpathentry kind="lib" path="jars/jinput.jar"/>
-	<classpathentry kind="lib" path="jars/laf-plugin-7.2.1.jar"/>
-	<classpathentry kind="lib" path="jars/laf-widget-7.2.1.jar"/>
-	<classpathentry kind="lib" path="jars/log4j-api-2.0-beta9.jar"/>
-	<classpathentry kind="lib" path="jars/lwjgl_test.jar"/>
-	<classpathentry kind="lib" path="jars/lwjgl_util_applet.jar"/>
-	<classpathentry kind="lib" path="jars/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="jars/lwjgl.jar"/>
-	<classpathentry kind="lib" path="jars/lwjgl-debug.jar"/>
-	<classpathentry kind="lib" path="jars/lzma.jar"/>
-	<classpathentry kind="lib" path="jars/slick-util.jar"/>
-	<classpathentry kind="lib" path="jars/substance-7.2.1.jar"/>
-	<classpathentry kind="lib" path="jars/trident-7.2.1.jar"/>
 	<classpathentry kind="lib" path="res"/>
-	<classpathentry kind="lib" path="jars/AppleJavaExtensions.jar"/>
+	<classpathentry kind="lib" path="jars/joml-1.10.8.jar"/>
+	<classpathentry kind="lib" path="jars/joml-1.10.8-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/joml-1.10.8-sources.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-glfw.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-glfw-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-glfw-natives-macos.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-glfw-natives-macos-arm64.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-glfw-natives-windows.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-glfw-sources.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-natives-macos.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-natives-macos-arm64.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-natives-windows.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-opengl.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-opengl-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-opengl-natives-macos.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-opengl-natives-macos-arm64.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-opengl-natives-windows.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-opengl-sources.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-sources.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-stb.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-stb-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-stb-natives-macos.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-stb-natives-macos-arm64.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-stb-natives-windows.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-stb-sources.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-tinyfd.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-tinyfd-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-tinyfd-natives-macos.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-tinyfd-natives-macos-arm64.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-tinyfd-natives-windows.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-tinyfd-sources.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-unsafe.jar"/>
+	<classpathentry kind="lib" path="jars/lwjgl-unsafe-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,6 +1,6 @@
 package com.sabre.tester;
 
-import org.lwjgl.util.vector.Vector3f;
+import org.joml.Vector3f;
 
 import com.sabre.entities.Camera;
 import com.sabre.entities.Entity;
@@ -23,18 +23,18 @@ public class Application {
 		DisplayManager.createDisplay("Sabre Game Toolkit Test Window", 1260, 720, true, 120);
 		
 		Loader loader = new Loader();
-		StaticShader staticShader = new StaticShader();
-		Renderer renderer = new Renderer(staticShader, 70, 0.1f, 1000.0f); 
+		StaticShader staticShader = new StaticShader(); 
+		Renderer renderer = new Renderer(staticShader, 70, 0.1f, 1000.0f);
 		
 		RawModel model = OBJLoader.loadOBJModel("res/monkey.obj").toRawModel(loader);
 		ModelTexture texture = new ModelTexture(loader.loadTexture("res/gold.png"));
-		texture.setShineDamper(10);
-		texture.setReflectivity(1);
+		texture.setMetallic(0.0f);
+		texture.setSmoothness(0.75f);
 		TexturedModel staticModel = new TexturedModel(model, texture);
 		
 		Entity entity = new Entity(staticModel, new Vector3f(0, 0,-5f), new Vector3f(0,0,0), new Vector3f(1,1,1));
 		
-		Light light = new Light(new Vector3f(0,10,0), new Vector3f(1,1,1), 0.1f);
+		Light light = new Light(new Vector3f(0,10,0), new Vector3f(2.5f,2.5f,2.5f), 0.1f);
 		
 		Camera camera = new Camera(new Vector3f(0,0,0), new Vector3f(0,0,0));
 		
@@ -67,7 +67,7 @@ public class Application {
 			staticShader.loadViewMatrix(camera);
 			
 			renderer.render(entity, staticShader);
-			
+
 			staticShader.stop();
 			
 			DisplayManager.updateDisplay();

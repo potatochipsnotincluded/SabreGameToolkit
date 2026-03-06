@@ -4,7 +4,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-import org.lwjgl.util.vector.Matrix4f;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import com.sabre.entities.Entity;
 import com.sabre.models.RawModel;
@@ -49,7 +50,7 @@ public class Renderer {
 		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(), entity.getRotation(), entity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);
 		ModelTexture texture = texturedModel.getTexture();
-		shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
+		shader.loadMaterialVariables(texture.getMetallic(), texture.getSmoothness());
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getID());
 		GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
@@ -61,19 +62,14 @@ public class Renderer {
 	}
 	
 	private void createProjectionMatrix() {
-		float aspectRatio = (float) DisplayManager.getWidth() / (float) DisplayManager.getHeight();
-		float y_scale = (float) ((1f / Math.tan(Math.toRadians(fov / 2f))) * aspectRatio);
-		float x_scale = y_scale / aspectRatio;
-		float frustum_length = far_plane - near_plane;
+	    float aspectRatio = (float) DisplayManager.getWidth() / DisplayManager.getHeight();
 
-
-		projectionMatrix = new Matrix4f();
-		projectionMatrix.m00 = x_scale;
-		projectionMatrix.m11 = y_scale;
-		projectionMatrix.m22 = -((far_plane + near_plane) / frustum_length);
-		projectionMatrix.m23 = -1;
-		projectionMatrix.m32 = -((2 * near_plane * far_plane) / frustum_length);
-		projectionMatrix.m33 = 0;
+	    projectionMatrix = new Matrix4f().perspective(
+	            (float) Math.toRadians(fov),
+	            aspectRatio,
+	            near_plane,
+	            far_plane
+	    );
 	}
 	
 }
