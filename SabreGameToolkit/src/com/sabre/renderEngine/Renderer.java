@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL30;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import com.sabre.entities.Entity;
+import com.sabre.entities.RenderEntity;
 import com.sabre.models.RawModel;
 import com.sabre.models.TexturedModel;
 import com.sabre.shaders.StaticShader;
@@ -39,15 +39,15 @@ public class Renderer {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 	}
 	
-	public void render(Entity entity, StaticShader shader) {
-		TexturedModel texturedModel = entity.getModel();
+	public void render(RenderEntity RenderEntity, StaticShader shader) {
+		TexturedModel texturedModel = RenderEntity.getModel();
 		RawModel model = texturedModel.getRawModel();
 		
 		GL30.glBindVertexArray(model.getVaoID());
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
 		GL20.glEnableVertexAttribArray(2);
-		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(), entity.getRotation(), entity.getScale());
+		Matrix4f transformationMatrix = Maths.createTransformationMatrix(RenderEntity.getPosition(), RenderEntity.getRotation(), RenderEntity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);
 		ModelTexture texture = texturedModel.getTexture();
 		shader.loadMaterialVariables(texture.getMetallic(), texture.getSmoothness());

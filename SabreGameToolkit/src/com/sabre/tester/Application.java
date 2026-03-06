@@ -3,7 +3,7 @@ package com.sabre.tester;
 import org.joml.Vector3f;
 
 import com.sabre.entities.Camera;
-import com.sabre.entities.Entity;
+import com.sabre.entities.RenderEntity;
 import com.sabre.entities.Light;
 import com.sabre.models.RawModel;
 import com.sabre.models.TexturedModel;
@@ -32,7 +32,7 @@ public class Application {
 		texture.setSmoothness(0.75f);
 		TexturedModel staticModel = new TexturedModel(model, texture);
 		
-		Entity entity = new Entity(staticModel, new Vector3f(0, 0,-5f), new Vector3f(0,0,0), new Vector3f(1,1,1));
+		RenderEntity entity = new RenderEntity(staticModel, new Vector3f(0, 0,-5f), new Vector3f(0,0,0), new Vector3f(1,1,1));
 		
 		Light light = new Light(new Vector3f(0,10,0), new Vector3f(2.5f,2.5f,2.5f), 0.1f);
 		

@@ -4,14 +4,14 @@ import org.joml.Vector3f;
 
 import com.sabre.models.TexturedModel;
 
-public class Entity {
+public class RenderEntity {
 	
 	private TexturedModel model;
-	private Vector3f position;
-	private Vector3f rotation;
-	private Vector3f scale;
+	public Vector3f position;
+	public Vector3f rotation;
+	public Vector3f scale;
 	
-	public Entity(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
+	public RenderEntity(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
 		this.model = model;
 		this.position = position;
 		this.rotation = rotation;
